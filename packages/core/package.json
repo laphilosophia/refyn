@@ -1,0 +1,45 @@
+{
+  "name": "@refyn/core",
+  "version": "0.0.1",
+  "description": "In-browser ETL runtime for zero-freeze data transformation",
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./worker": {
+      "types": "./dist/worker/transform.worker.d.ts",
+      "import": "./dist/worker/transform.worker.js"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "node build.mjs && tsc --emitDeclarationOnly --declaration --outDir dist",
+    "dev": "node build.mjs --watch",
+    "clean": "rimraf dist",
+    "typecheck": "tsc --noEmit"
+  },
+  "keywords": [
+    "etl",
+    "transform",
+    "worker",
+    "browser",
+    "schema"
+  ],
+  "author": "Erdem Arslan",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/laphilosophia/refyn.git",
+    "directory": "packages/core"
+  },
+  "devDependencies": {
+    "rimraf": "^6.0.1"
+  },
+  "sideEffects": false
+}

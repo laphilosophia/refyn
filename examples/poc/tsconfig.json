@@ -1,0 +1,20 @@
+{
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": {
+    "noEmit": true,
+    "baseUrl": ".",
+    "paths": {
+      "@refyn/core": [
+        "../../packages/core/src/index.ts"
+      ],
+      "@refyn/core/*": [
+        "../../packages/core/src/*"
+      ]
+    }
+  },
+  "include": [
+    "*.ts",
+    "vite.config.ts",
+    "vite-env.d.ts"
+  ]
+}
