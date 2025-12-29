@@ -2,7 +2,7 @@
  * useCachedTransform - Transform with automatic caching
  */
 
-import type { CacheManager, Pipeline, Schema } from '@refyn/core';
+import type { CacheManager, Pipeline, Schema, TransformResult } from '@refyn/core';
 import { useCallback, useEffect, useRef, useState } from 'react';
 
 export interface UseCachedTransformOptions {
@@ -29,6 +29,8 @@ export interface UseCachedTransformReturn<T = unknown[]> {
   error: Error | null;
   /** Whether result came from cache */
   fromCache: boolean;
+  /** Metrics from last transform */
+  metrics: TransformResult['metrics'] | null;
   /** Execute transformation (checks cache first) */
   execute: (data: unknown[], schema?: Schema) => Promise<T>;
   /** Invalidate cache for specific key */
@@ -46,6 +48,7 @@ export function useCachedTransform<T = unknown[]>(
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<Error | null>(null);
   const [fromCache, setFromCache] = useState(false);
+  const [metrics, setMetrics] = useState<TransformResult['metrics'] | null>(null);
 
   const mountedRef = useRef(true);
 
@@ -63,6 +66,7 @@ export function useCachedTransform<T = unknown[]>(
     setIsLoading(true);
     setError(null);
     setFromCache(false);
+    setMetrics(null);
 
     const cacheKey = getCacheKey(inputData);
 
@@ -88,6 +92,7 @@ export function useCachedTransform<T = unknown[]>(
 
       if (mountedRef.current) {
         setData(result.data);
+        setMetrics(result.metrics);
       }
 
       return result.data;
@@ -119,6 +124,7 @@ export function useCachedTransform<T = unknown[]>(
     isLoading,
     error,
     fromCache,
+    metrics,
     execute,
     invalidate,
     clearCache,
