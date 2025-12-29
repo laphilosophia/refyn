@@ -1,8 +1,9 @@
 # Refyn
 
-**In-browser ETL runtime for zero-freeze data transformation**
+> **In-browser ETL runtime for zero-freeze data transformation**
 
 [![npm version](https://badge.fury.io/js/@refyn/core.svg)](https://www.npmjs.com/package/@refyn/core)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](./LICENSE)
 
 Transform large JSON datasets in the browser without blocking the UI thread. Refyn uses Web Workers for parallel processing and provides a declarative schema DSL for data mapping.
 
@@ -318,6 +319,12 @@ Tested with 10,000 rows (5.25MB JSON):
 - Safari 15+
 - Edge 90+
 
+## Contributing
+
+We welcome contributions! Please read `CONTRIBUTING.md` and follow `CODE_OF_CONDUCT.md` before opening issues or pull requests. Use the issue and PR templates in `.github/ISSUE_TEMPLATE` and `.github/PULL_REQUEST_TEMPLATE` to speed up review.
+
+To run the test and lint suite locally: `pnpm install && pnpm test && pnpm lint`.
+
 ## License
 
-MIT © Erdem Arslan
+MIT © Erdem Arslan — see `LICENSE` for details.
